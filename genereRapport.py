@@ -7,6 +7,7 @@ from script.HeuresTravaillees   import HeuresTravaillees
 from script.TraceCourbeEnS      import CourbeEnS
 from script.AvancementObjectifs import AvancementObjectifs
 from script.AvancementSystemes  import AvancementSystemes
+from script.Problemes           import Problemes
 from script.TravailEffectue     import TravailEffectue
 from PIL import Image
 
@@ -69,6 +70,10 @@ taches_effectuees.graphSave()
 #avancement_systemes.fetchData()
 #avancement_systemes.graphSave()
 
+problemes = Problemes(spec)
+problemes.fetchData()
+problemes.graphSave()
+
 
 resizePicture("img/progression_objectifs.png", (1336, 405))
 resizePicture("img/avancement.png", (1185, 483))
@@ -81,11 +86,8 @@ add("img/avancement.png")
 add("img/Courbe_S.png")
 add("img/heures_travaillees.png")
 add("img/taches")
+add("img/problemes")
 commitEtPush()
-
-#problemes = Problemes(spec)
-#problemes.fetchData()
-#problemes.graphSave()
 
 #budget = Budget(spec)
 #budget.fetchData()
