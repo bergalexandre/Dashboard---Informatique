@@ -9,6 +9,9 @@ from script.AvancementObjectifs import AvancementObjectifs
 from script.AvancementSystemes  import AvancementSystemes
 from PIL import Image
 
+git_integration = False
+
+
 def run(*args):
     return subprocess.check_call(['git'] + list(args))
 
@@ -74,12 +77,13 @@ resizePicture("img/avancement.png", (1185, 483))
 resizePicture("img/Courbe_S.png", (604, 436))
 resizePicture("img/heures_travaillees.png", (511, 342)) 
 
-pull()
-add("img/progression_objectifs.png")
-add("img/avancement.png")
-add("img/Courbe_S.png")
-add("img/heures_travaillees.png")
-commitEtPush()
+if git_integration == True:
+    pull()
+    add("img/progression_objectifs.png")
+    add("img/avancement.png")
+    add("img/Courbe_S.png")
+    add("img/heures_travaillees.png")
+    commitEtPush()
 
 #problemes = Problemes(spec)
 #problemes.fetchData()
