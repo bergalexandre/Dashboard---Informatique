@@ -11,7 +11,7 @@ from script.Problemes           import Problemes
 from script.TravailEffectue     import TravailEffectue
 from PIL import Image
 
-git_integration = False
+git_integration = True
 
 
 def run(*args):
@@ -56,26 +56,26 @@ def resizePicture(path, dimension):
 
 
 spec = Speciality.INFO
-avancement_objectifs = AvancementObjectifs("DVP-Feuille-temps.xlsm")
+avancement_objectifs = AvancementObjectifs("../DVP-Feuille-temps.xlsm")
 avancement_objectifs.graphSave()
 
 heures_travaillees = HeuresTravaillees(spec, offset=8)
 heures_travaillees.fetchData()
 heures_travaillees.graphSave()
 
-CourbeEnS("DVP-Feuille-temps.xlsm")
+CourbeEnS("../DVP-Feuille-temps.xlsm")
 
 taches_effectuees = TravailEffectue(spec)
 taches_effectuees.fetchData()
-taches_effectuees.graphSave()
+taches_effectuees.writeTable()
 
-avancement_systemes = AvancementSystemes("DVP-Feuille-temps.xlsm", spec)
+avancement_systemes = AvancementSystemes(spec)
 avancement_systemes.fetchData()
 avancement_systemes.graphSave()
 
 problemes = Problemes(spec)
 problemes.fetchData()
-problemes.graphSave()
+problemes.writeTable()
 
 
 resizePicture("img/progression_objectifs.png", (1336, 405))
@@ -90,8 +90,8 @@ if git_integration == True:
     add("img/avancement.png")
     add("img/Courbe_S.png")
     add("img/heures_travaillees.png")
-    add("img/taches")
-    add("img/problemes")
+    add("tableauDeTaches.tex")
+    add("tableauDeProblemes.tex") #frog(?) #WhatTheBread
     commitEtPush()
 
 #budget = Budget(spec)

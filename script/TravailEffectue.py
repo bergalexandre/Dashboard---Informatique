@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-from utils import *
+from script.utils import *
 import shutil
 
 
@@ -19,7 +19,7 @@ class TravailEffectue():
     def fetchData(self):
         # fetching data
         semaine_courante = df_formule['Date Actuel'][1]
-        data = df_travail_effectue[['Objectif', 'Nom Système', 'Nom', "Pourcentage d'avancement" ,'heures']].dropna()[df_travail_effectue['Semaine'] == semaine_courante]
+        data = df_travail_effectue[['Objectif', 'Nom Système', 'NOM', "Pourcentage d'avancement" ,'heures']].dropna()[df_travail_effectue['Semaine'] == semaine_courante]
 
     
         # Heures taches de la semaine
@@ -27,9 +27,10 @@ class TravailEffectue():
             if objectif['NOM'] in self.travail_effectue.keys():
                 self.travail_effectue[objectif['NOM']].append(objectif.values.tolist())
                 if objectif.values.tolist()[3] < 1:
-                    self.travail_effectue[objectif['NOM']][3] = 'En Cours'
+                    print(objectif['NOM'])
+                    self.travail_effectue[objectif['NOM']][-1][3] = 'En Cours'
                 else:
-                    self.travail_effectue[objectif['NOM']][3] = 'Terminé'
+                    self.travail_effectue[objectif['NOM']][-1][3] = 'Terminé'
 
 
     def writeTable(self):
@@ -51,8 +52,8 @@ class TravailEffectue():
                     line = line.replace("sys1", cell_text[i][1])
                     line = line.replace("res1", cell_text[i][2])
                     line = line.replace("etat1", cell_text[i][3])
-                    line = line.replace("heure1", cell_text[i][4])
-                else: # :'(
+                    line = line.replace("heure1", str(cell_text[i][4]))
+                else: # :'(  :@
                     line = line.replace("tache1", " ")
                     line = line.replace("sys1", " ")
                     line = line.replace("res1", " ")
@@ -77,7 +78,7 @@ class TravailEffectue():
                     cell_text.append(row)
         
         fig = plt.subplot()
-        table = fig.table(cellText=cell_text, colColours=['g', 'g', 'g', 'g'], colLabels=column_headers, loc='center', cellLoc='center')
+        table = fig.table(cellText=cell_text, colColours=['g', 'g', 'g', 'g', 'g'], colLabels=column_headers, loc='center', cellLoc='center')
         fig.axis("off")
         #fig.set_size_inches(5, 8)
         #[t.auto_set_font_size(False) for t in [tab1, tab2]]

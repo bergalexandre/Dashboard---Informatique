@@ -1,9 +1,11 @@
 from matplotlib import pyplot as plt
-from utils import *
+from script.utils import *
+import shutil
 
 class Problemes():
 
     def __init__(self, specialty):
+        shutil.copyfile("template/tableauDeProblemes.tex", "tableauDeProblemes.tex")
         self.specialty = specialty
         self.travail_effectue = {}
         for membre in self.specialty['membres'].keys():
@@ -31,7 +33,7 @@ class Problemes():
                 if bool(row):
                     cell_text.append(row)
 
-        with open('tableauDeTaches.tex', 'r', encoding='utf8') as tableauFile:
+        with open('tableauDeProblemes.tex', 'r', encoding='utf8') as tableauFile:
             Lines = tableauFile.readlines()
 
             # Strips the newline character
@@ -47,7 +49,7 @@ class Problemes():
                 outputFile.append(line)
                 print(outputFile[-1])
 
-        with open('tableauDeTaches.tex', 'w', encoding='utf8') as tableauFile:
+        with open('tableauDeProblemes.tex', 'w', encoding='utf8') as tableauFile:
             tableauFile.writelines(outputFile)
 
 
