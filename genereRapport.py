@@ -7,6 +7,7 @@ from script.HeuresTravaillees   import HeuresTravaillees
 from script.TraceCourbeEnS      import CourbeEnS
 from script.AvancementObjectifs import AvancementObjectifs
 from script.AvancementSystemes  import AvancementSystemes
+from script.TravailEffectue     import TravailEffectue
 from PIL import Image
 
 def run(*args):
@@ -60,9 +61,9 @@ heures_travaillees.graphSave()
 
 CourbeEnS("DVP-Feuille-temps.xlsm")
 
-#taches_effectuees = TachesEffectuees(spec)
-#taches_effectuees.fetchData()
-#taches_effectuees.graphSave()
+taches_effectuees = TravailEffectue(spec)
+taches_effectuees.fetchData()
+taches_effectuees.graphSave()
 
 #avancement_systemes = AvancementSystemes("DVP-Feuille-temps.xlsm", spec)
 #avancement_systemes.fetchData()
@@ -79,6 +80,7 @@ add("img/progression_objectifs.png")
 add("img/avancement.png")
 add("img/Courbe_S.png")
 add("img/heures_travaillees.png")
+add("img/taches")
 commitEtPush()
 
 #problemes = Problemes(spec)
