@@ -69,9 +69,9 @@ taches_effectuees = TravailEffectue(spec)
 taches_effectuees.fetchData()
 taches_effectuees.graphSave()
 
-#avancement_systemes = AvancementSystemes("DVP-Feuille-temps.xlsm", spec)
-#avancement_systemes.fetchData()
-#avancement_systemes.graphSave()
+avancement_systemes = AvancementSystemes("DVP-Feuille-temps.xlsm", spec)
+avancement_systemes.fetchData()
+avancement_systemes.graphSave()
 
 problemes = Problemes(spec)
 problemes.fetchData()
