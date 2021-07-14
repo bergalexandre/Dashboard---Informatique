@@ -22,6 +22,34 @@ class Problemes():
                 self.travail_effectue[objectif['NOM']].append(objectif.values.tolist())
 
                 
+    def writeTable(self):
+        outputFile = []
+        
+        cell_text = []
+        for membre in self.travail_effectue.keys():
+            for row in self.travail_effectue[membre]:
+                if bool(row):
+                    cell_text.append(row)
+
+        with open('tableauDeTaches.tex', 'r', encoding='utf8') as tableauFile:
+            Lines = tableauFile.readlines()
+
+            # Strips the newline character
+            for i, line in enumerate(Lines):
+                if i < len(cell_text):
+                    line = line.replace("tache1", cell_text[i][2])
+                    line = line.replace("sys1", cell_text[i][1])
+                    line = line.replace("res1", cell_text[i][0])
+                else: # :'(
+                    line = line.replace("tache1", " ")
+                    line = line.replace("sys1", " ")
+                    line = line.replace("res1", " ")
+                outputFile.append(line)
+                print(outputFile[-1])
+
+        with open('tableauDeTaches.tex', 'w', encoding='utf8') as tableauFile:
+            tableauFile.writelines(outputFile)
+
 
     def graphSave(self):
         
