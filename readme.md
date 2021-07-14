@@ -32,3 +32,4 @@ Pour votre compte Overleaf:
 1. Va dans le repo git overleaf de ton pc
 2. tape cmd dans la barre d'exploration (ou autre si tu préfère un autre bash, I don't care)
 3. Rouler la commande py genereRapport.py
+4. test
