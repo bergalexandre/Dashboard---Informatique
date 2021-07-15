@@ -80,7 +80,7 @@ class AvancementSystemes():
 
                 #  Matplotlib
                 wedges, texts = axs[index].pie(new_data.values(), wedgeprops=dict(
-                    width=0.3), startangle=-90, colors=colors, radius=1.1)
+                    width=0.4), startangle=-90, colors=colors, radius=1.1)
 
                 bbox_props = dict(boxstyle="round,pad=0.3", fc="w", ec="k", lw=0.72)
                 kw = dict(arrowprops=dict(arrowstyle="-"),
@@ -97,9 +97,9 @@ class AvancementSystemes():
         width, height = img.size
 
         left = 1
-        top = height / 4
+        top = height / 8
         right = width
-        bottom = 5 * height / 8       
+        bottom = 3 * height / 4       
 
         img = img.crop([left, top, right, bottom])
         #img.show()
