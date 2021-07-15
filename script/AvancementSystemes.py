@@ -27,7 +27,7 @@ class AvancementSystemes():
         # weights
         for i, objectif in df_Prevision_Courbe_S[df_Prevision_Courbe_S['Total'] > 0].iterrows():
             if  isinstance(objectif['Requis'], str):
-                avancement = round(df_Avancement_Courbe_S['Avancement'][i],2)
+                avancement = df_Avancement_Courbe_S['Avancement'][i]
                 semaines = df_Prevision_Courbe_S.columns[5:]
                 avancement_estime = 0
                 for s in semaines:
@@ -38,8 +38,8 @@ class AvancementSystemes():
                             avancement_estime = avancement_estime + objectif[s]
                             break
                 weight = df_Prevision_Courbe_S['Total'][i] / Systeme.mapSysteme(objectif['Requis'][0:4])['hours']
-                avancement_estime = round((avancement_estime / df_Prevision_Courbe_S['Total'][i]) * weight, 2)
-                avancement = round(avancement * weight, 2)
+                avancement_estime = (avancement_estime / df_Prevision_Courbe_S['Total'][i]) * weight
+                avancement = avancement * weight
         
                 if objectif['Requis'][:4] not in self.systemes.keys():
                     self.systemes[objectif['Requis'][:4]] = {'Avancement réel' : avancement, 'Avancement estimé' : avancement_estime}
@@ -64,12 +64,9 @@ class AvancementSystemes():
             if Systeme.mapSysteme(s) in self.specialty['systemes']:
                 new_data = copy(data[s])
                 new_data['Fill'] = 1 - new_data['Avancement réel'] 
-                new_data['Avancement estimé'] = round(
-                    new_data["Avancement réel"] - new_data["Avancement estimé"], 2)  # pos = avance | neg = retard
-                    
+                new_data['Avancement estimé'] = new_data["Avancement réel"] - new_data["Avancement estimé"]  # pos = avance | neg = retard
                 if new_data['Avancement estimé'] >= 0:  # En avance sur le système
-                    new_data['Avancement réel'] = round(
-                        new_data['Avancement réel'] - new_data['Avancement estimé'], 2)
+                    new_data['Avancement réel'] = new_data['Avancement réel'] - new_data['Avancement estimé']
                     new_data['Fill'] = 1 - new_data['Avancement réel'] 
                     columns = ['Avancement réel', 'Avance', 'Fill']
                     colors = ['tab:blue', 'tab:green', 'tab:grey']
@@ -86,7 +83,7 @@ class AvancementSystemes():
                 kw = dict(arrowprops=dict(arrowstyle="-"),
                         bbox=bbox_props, zorder=0, va="center")
 
-                axs[index].annotate(str(data[s]['Avancement réel'] * 100) +
+                axs[index].annotate(str(round(data[s]['Avancement réel'] * 100, 1)) +
                             "%", xy=(0, 0), ha='center', va='center')
                 axs[index].set_title(s, y=1.1)
                 index = index + 1

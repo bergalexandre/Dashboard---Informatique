@@ -37,11 +37,13 @@ class Problemes():
             Lines = tableauFile.readlines()
 
             # Strips the newline character
-            for i, line in enumerate(Lines):
-                if i < len(cell_text):
+            i = 0
+            for line in Lines:
+                if i < len(cell_text)and "tache1" in line:
                     line = line.replace("tache1", cell_text[i][2].replace("&", "\&").replace("_", " "))
                     line = line.replace("sys1", cell_text[i][1].replace("&", "\&").replace("_", " "))
                     line = line.replace("res1", cell_text[i][0].replace("&", "\&").replace("_", " "))
+                    i = i + 1
                 else: # :'(
                     line = line.replace("tache1", " ")
                     line = line.replace("sys1", " ")
