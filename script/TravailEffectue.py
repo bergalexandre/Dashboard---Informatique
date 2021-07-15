@@ -18,19 +18,18 @@ class TravailEffectue():
 
     def fetchData(self):
         # fetching data
-        semaine_courante = df_formule['Date Actuel'][1]
+        semaine_courante = "Sem 10" #df_formule['Date Actuel'][1]
         data = df_travail_effectue[['Objectif', 'Nom Système', 'NOM', "Pourcentage d'avancement" ,'heures']].dropna()[df_travail_effectue['Semaine'] == semaine_courante]
 
     
         # Heures taches de la semaine
         for i, objectif in data.iterrows():
             if objectif['NOM'] in self.travail_effectue.keys():
-                self.travail_effectue[objectif['NOM']].append(objectif.values.tolist())
                 if objectif.values.tolist()[3] < 1:
-                    print(objectif['NOM'])
-                    self.travail_effectue[objectif['NOM']][-1][3] = 'En Cours'
+                    pass #self.travail_effectue[objectif['NOM']][-1][3] = 'En Cours'
                 else:
-                    self.travail_effectue[objectif['NOM']][-1][3] = 'Terminé'
+                    self.travail_effectue[objectif['NOM']].append(objectif.values.tolist())
+                    self.travail_effectue[objectif['NOM']][-1].pop(3)
 
 
     def writeTable(self):
@@ -46,18 +45,18 @@ class TravailEffectue():
             Lines = tableauFile.readlines()
 
             # Strips the newline character
-            for i, line in enumerate(Lines):
-                if i < len(cell_text):
-                    line = line.replace("tache1", cell_text[i][0])
-                    line = line.replace("sys1", cell_text[i][1])
-                    line = line.replace("res1", cell_text[i][2])
-                    line = line.replace("etat1", cell_text[i][3])
-                    line = line.replace("heure1", str(cell_text[i][4]))
+            index = 0
+            for line in Lines:
+                if index < len(cell_text) and "tache1" in line:
+                    line = line.replace("tache1", cell_text[index][0].replace("&", "\&").replace("_", " "))
+                    line = line.replace("sys1", cell_text[index][1].replace("&", "\&").replace("_", " "))
+                    line = line.replace("res1", cell_text[index][2].replace("&", "\&").replace("_", " "))
+                    line = line.replace("heure1", str(cell_text[index][3]))
+                    index = index + 1
                 else: # :'(  :@
                     line = line.replace("tache1", " ")
                     line = line.replace("sys1", " ")
                     line = line.replace("res1", " ")
-                    line = line.replace("etat1", " ")
                     line = line.replace("heure1", " ")
                 outputFile.append(line)
                 print(outputFile[-1])

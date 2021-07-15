@@ -10,6 +10,8 @@
 \usepackage{svg}
 \usepackage{xcolor}
 \usepackage{tabularx}
+
+
 % Set main font (Abraham)
 %\setmainfont[
 %    Path = font/Abraham/,
@@ -69,7 +71,7 @@ linewidth=1pt % Width of the border lines around content boxes
 %
 {\textsf{{Tableau de bord - Éco-Marathon Shell 2023}}} % Titre en Sans Serif
 {\sf\vspace{0.1em}\\
-Informatique  -  {\AdvanceDate[0]\today} 
+Électrique  -  {\AdvanceDate[0]\today} 
 \vspace{0.1em}\\
 \small{ Période couverte du {\AdvanceDate[-7]\today} au {\AdvanceDate[0]\today}
 }
@@ -89,9 +91,9 @@ Créer un véhicule efficace à propulsion électrique pour participer et gagner
 \headerbox{Objectifs de session}{name=objectif_session,column=1,below=objectif,span=2}{
 
 %\vspace{0.15cm}
-%\textit{PROGRESSION DES OBJECTIFS DE SESSION} ça prend trop de place je le commente
+\textit{PROGRESSION DES OBJECTIFS DE SESSION}
 
-{\includegraphics[width=1\linewidth]{img/progression_objectifs.png}}
+{\includegraphics[scale=.54]{img/progression_objectifs.png}}
 
 \vspace{0.2cm} % spacing vertical
 
@@ -245,7 +247,7 @@ Contrôle
     {
         \hspace{1cm}
         \centering
-    	\includegraphics[scale=.75]{img/heures_travaillees.png}
+    	\includegraphics[scale=.75]{img/Heures_travaillees.png}
     }
     \vspace{1.3cm}
 }
@@ -280,47 +282,43 @@ linewidth=1pt % Width of the border lines around content boxes
 
 
 % this states the box starts at column 0 (edge of page), row 0 (top of page) for a span of 3 (columns wide)
-\headerbox{Tâches accomplies}{name=taches,column=0,row=0, span=3}{
-%{\input{tableauDeTaches.tex}}
-\centering
+\headerbox{Objectifs accomplis}{name=taches,column=0,row=0, span=3}{
 {\input{tableauDeTaches.tex}}
-
-\vspace{0.2cm} % spacing vertical
 
 %\vspace{2cm} %remove this, only added for spacing
 
 }
 
-% this states the box starts at column 0 (edge of page), directly below the box labelled introduction for a span of 1 (column wide)
-\headerbox{Avancement systèmes}{name=systemes,column=1,below=taches,span=2}{
-
-%\vspace{0.15cm}
-\textit{AVANCEMENT DES SYSTÈMES DU PROJET}
-\centering
-{\includegraphics[width=.75\linewidth]{img/avancement.png}}
-
-\vspace{0.2cm} % spacing vertical
-
-}
-
 % this states the box starts at column 0 (edge of page), directly below the box labelled subtopic1 for a span of 1 (column wide)
 
-\headerbox{Problèmes}{name=problemes,column=0,below=taches,span=1}{
+\headerbox{Problèmes}{name=problemes,column=0,below=taches,span=3}{
 
-\vspace{.65cm}
-\begin{itemize}
-    \item \textbf{Faire un schéma de dataflow du simulateur:} Mauvais compréhension du flow de données du simulateur dans l'équipe informatique				
-    \item \textbf{Peux pas entrer les heures dans le DVP:} Courbe en S est pas représentative.	
-    \end{itemize}
+{\input{tableauDeProblemes.tex}}
 
-    \vspace{1.8cm} % spacing vertical
+%\vspace{.65cm}
+%\begin{itemize}
+%    \item \textbf{Faire un schéma de dataflow du simulateur:} Mauvais compréhension du flow de données du %simulateur dans l'équipe informatique				
+%    \item \textbf{Peux pas entrer les heures dans le DVP:} Courbe en S est pas représentative.	
+%    \end{itemize}%
+
+%    \vspace{1.8cm} % spacing vertical
+
+}
+
+% this states the box starts at column 0 (edge of page), directly below the box labelled introduction for a span of 1 (column wide)
+\headerbox{Avancement systèmes}{name=systemes,column=0,below=problemes,span=3}{
+
+%\vspace{0.15cm}
+\centering
+{\includegraphics[width=1\linewidth]{img/avancement.png}}
+
+%\vspace{0.2cm} % spacing vertical
 
 }
 
 
 
-
-\headerbox{Risques}{name=risques,column=0,span=3,below=problemes}{
+\headerbox{Risques}{name=risques,column=0,span=3,below=systemes}{
 {
     {
         \hspace{1cm}

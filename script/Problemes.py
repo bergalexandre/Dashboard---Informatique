@@ -15,7 +15,7 @@ class Problemes():
 
     def fetchData(self):
         # fetching data
-        semaine_courante = df_formule['Date Actuel'][1]
+        semaine_courante = 'Sem 10' #df_formule['Date Actuel'][1]
         data = df_travail_effectue[['NOM', 'Nom Système', 'Problème']].dropna()[df_travail_effectue['Semaine'] == semaine_courante]
     
         # Heures taches de la semaine
@@ -39,9 +39,9 @@ class Problemes():
             # Strips the newline character
             for i, line in enumerate(Lines):
                 if i < len(cell_text):
-                    line = line.replace("tache1", cell_text[i][2])
-                    line = line.replace("sys1", cell_text[i][1])
-                    line = line.replace("res1", cell_text[i][0])
+                    line = line.replace("tache1", cell_text[i][2].replace("&", "\&").replace("_", " "))
+                    line = line.replace("sys1", cell_text[i][1].replace("&", "\&").replace("_", " "))
+                    line = line.replace("res1", cell_text[i][0].replace("&", "\&").replace("_", " "))
                 else: # :'(
                     line = line.replace("tache1", " ")
                     line = line.replace("sys1", " ")
