@@ -92,9 +92,9 @@ Créer un véhicule efficace à propulsion électrique pour participer et gagner
 
 %\vspace{0.15cm}
 \centering
-{\includegraphics[width=0.84\linewidth]{img/progression_objectifs.png}}
+{\input{tableaux/objectifs_session}}
 
-\vspace{0.2cm} % spacing vertical
+%\vspace{0.2cm} % spacing vertical
 
 }
 
@@ -280,8 +280,8 @@ linewidth=1pt % Width of the border lines around content boxes
 
 
 % this states the box starts at column 0 (edge of page), row 0 (top of page) for a span of 3 (columns wide)
-\headerbox{Objectifs accomplis}{name=taches,column=0,row=0, span=3}{
-{\input{tableauDeTaches.tex}}
+\headerbox{Tâches accomplies}{name=taches,column=0,row=0, span=3}{
+{\input{tableaux/objectifs_accomplis}}
 
 %\vspace{2cm} %remove this, only added for spacing
 
@@ -291,7 +291,7 @@ linewidth=1pt % Width of the border lines around content boxes
 
 \headerbox{Problèmes}{name=problemes,column=0,below=taches,span=3}{
 
-{\input{tableauDeProblemes.tex}}
+{\input{tableaux/problemes}}
 
 %\vspace{.65cm}
 %\begin{itemize}
@@ -318,7 +318,7 @@ linewidth=1pt % Width of the border lines around content boxes
 
 \headerbox{Risques}{name=risques,column=0,span=3,below=systemes}{
 {
-    \centering\includegraphics[width=1\linewidth]{img/risques.png}
+    {\input{tableaux/risques}}
 }
 
 }
