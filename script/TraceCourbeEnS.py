@@ -88,7 +88,10 @@ class CourbeEnS():
         axe.plot(BudgetedHours, "k")
         axe.plot(range(index+1), workedHours[:semaine+1], "g--")
         axe.plot(range(index+1), realProgressHours[:semaine+1], "b")
-        axe.plot(range(index, len(BudgetedHours)), workedHours[index:], "r--")
+
+        #deltaAvancement = BudgetedHours[index] - workedHours[index]
+        #axe.plot(range(index, len(BudgetedHours)), list((heureTotal-deltaAvancement) for heureTotal in BudgetedHours[index:]), "r--")
+        
         axe.set_xticks(range(len(BudgetedHours)))
         plt.xticks(rotation=45)
         axe.set_xticklabels(axeXDate.strftime("%Y-%m-%d"))
