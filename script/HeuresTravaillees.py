@@ -21,7 +21,7 @@ class HeuresTravaillees():
 
     def fetchData(self):
         # fetching data
-        semaine_courante = "Sem 10" #df_formule['Date Actuel'][1]
+        semaine_courante = df_formule['Date Actuel'][1]
         data = df_travail_effectue[['#Requis', 'NOM', 'Semaine', 'heures']]
 
         # Heures totales et heures systemes
@@ -80,7 +80,6 @@ class HeuresTravaillees():
                       "ko" if moyennes_hebdo[indexMembre] >= 9 else "kx")
         plt.xlim([-1, len(self.heures_travaillees)])
         plt.xticks(rotation=45)
-        plt.show()
         plt.savefig("img/heures_travaillees.png", bbox_inches='tight')
 
 
