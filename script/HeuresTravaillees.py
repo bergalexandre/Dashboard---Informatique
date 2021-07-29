@@ -29,7 +29,7 @@ class HeuresTravaillees():
             print(objectif['NOM'])
             if objectif['NOM'] in self.heures_travaillees.keys():
                 requis = objectif['#Requis']
-                if semaine_courante == objectif['Semaine']:
+                if semaine_courante == 'Sem 12': #objectif['Semaine']:
                     self.heures_travaillees[objectif['NOM']][requis[0:4]
                                                              ] = self.heures_travaillees[objectif['NOM']][requis[0:4]] + objectif['heures']
                 self.heures_travaillees[objectif['NOM']]['heures totales'] = self.heures_travaillees[objectif['NOM']
