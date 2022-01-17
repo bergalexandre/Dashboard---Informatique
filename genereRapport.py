@@ -1,99 +1,101 @@
+"""
+File: genereRapport.py
+Author(s):
+    Bergeron, Alexandre       | BERA2920
+    Cabana,   Gabriel         | CABG2101
+    Granger,  Charles-Etienne | GRAC2310
+Date(s):
+    2021-07-12 (Creation)
+Description:
+    Main program.
+    Diagram generation and repository update.
+"""
+
+### Official modules
 import subprocess
-from datetime import datetime
-import pandas
 import os.path
-from script.utils               import *
+import matplotlib.pyplot as plt
+from datetime import datetime
+# from PIL import Image
+
+### Custom modules
+from script.utils               import Speciality, PATHS, DATES
 from script.HeuresTravaillees   import HeuresTravaillees
-from script.TraceCourbeEnS      import CourbeEnS
+from script.TraceCourbeEnS      import CourbeEnS, findWeek
 from script.AvancementObjectifs import AvancementObjectifs
 from script.AvancementSystemes  import AvancementSystemes
 from script.Problemes           import Problemes
 from script.TravailEffectue     import TravailEffectue
-from PIL import Image
 
-git_integration = True
 
+##################################################
+### METHODS                                    ###
+##################################################
 
 def run(*args):
     return subprocess.check_call(['git'] + list(args))
 
 
-def dateActuel(Depart = "5/6/2021"):
-    semaines = pandas.date_range(start=Depart, periods=16, freq="7D") #trimeste = 16 semaines????
-    #trouve la semaine courante
-    semaineN = 0
-    for index, date in enumerate(semaines):
-        if date > datetime.today():
-            semaineN = index
-            break
-    return semaineN
+def add(relative_file_path):
+    if(os.path.isfile(relative_file_path) == False):
+        raise Exception(f"Ton fichier existe pas {relative_file_path}")
+    run("add", relative_file_path)
+
+
+#pas call pour le moment
+def tag():
+    run("tag", "-a", f"vSem{findWeek()-1}")
+
+
+def commit(message = f"Création des graphiques du tableau de bord (semaine {findWeek()})"):
+    run("commit", "-m", message)
+
 
 def pull():
     run("pull")
 
-#pas call pour le moment
-def tagDernierRapportEtPushTag():
-    run("tag", "-a", f"vSem{dateActuel()-1}")
 
-def add(relativeFilePath):
-    if(os.path.isfile(relativeFilePath) == False):
-        raise Exception(f"Ton fichier existe pas {relativeFilePath}")
-    run("add", relativeFilePath)
-
-def commitEtPush():
-    commit_message = f"\nCréation du template semaine{dateActuel()}"
-
-    run("commit", "-m", commit_message)
+def push():
     run("push")
 
+##################################################
+### MAIN                                       ###
+##################################################
 
-# dimension est un tupple (x, y)
-def resizePicture(path, dimension):
-    img = Image.open(path)
-    resized_img = img.resize(dimension)
-    resized_img.save(path)
+if __name__ == "__main__":
+    speciality = Speciality.INFO
+    git        = False
+    plt.style.use(PATHS["STYLE"])
 
+    heures_travaillees = HeuresTravaillees(speciality)
+    heures_travaillees.fetchData()
+    heures_travaillees.graphSave()
 
+    CourbeEnS(PATHS["DVP"])
 
-spec = Speciality.INFO
-#avancement_objectifs = AvancementObjectifs("../DVP-Feuille-temps.xlsm")
-#avancement_objectifs.graphSave()
+    # taches_effectuees = TravailEffectue(SPEC)
+    # taches_effectuees.fetchData()
+    # taches_effectuees.writeTable()
 
-heures_travaillees = HeuresTravaillees(spec, offset=8)
-heures_travaillees.fetchData()
-heures_travaillees.graphSave()
+    # avancement_systemes = AvancementSystemes(speciality)
+    # avancement_systemes.fetchData()
+    # avancement_systemes.graphSave()
 
-CourbeEnS("../DVP-Feuille-temps.xlsm")
+    # problemes = Problemes(SPEC)
+    # problemes.fetchData()
+    # problemes.writeTable()
 
-""" taches_effectuees = TravailEffectue(spec)
-taches_effectuees.fetchData()
-taches_effectuees.writeTable() """
+    # budget = Budget(SPEC)
+    # budget.fetchData()
+    # budget.graphSave()
 
-avancement_systemes = AvancementSystemes(spec)
-avancement_systemes.fetchData()
-avancement_systemes.graphSave()
-
-""" problemes = Problemes(spec)
-problemes.fetchData()
-problemes.writeTable() """
-
-
-#resizePicture("img/progression_objectifs.png", (1336, 405))
-#resizePicture("img/avancement.png", (1185, 483))
-resizePicture("img/Courbe_S.png", (604, 436))
-resizePicture("img/heures_travaillees.png", (511, 342)) 
-
-
-if git_integration == True:
-    pull()
-    #add("img/progression_objectifs.png")
-    add("img/avancement.png")
-    add("img/Courbe_S.png")
-    add("img/heures_travaillees.png")
-    #add("tableauDeTaches.tex")
-    #add("tableauDeProblemes.tex") #frog(?) #WhatTheBread
-    commitEtPush()
-
-#budget = Budget(spec)
-#budget.fetchData()
-#budget.graphSave()
+    if git == True:
+        pull()
+        # add(PATH_OBJECTIVES)
+        #add(PATHS["ADVANCEMENT"])
+        add(PATHS["CURVE"])
+        add(PATHS["HOURS"])
+        # add(PATH_TASKS)
+        # add(PATH_ISSUES)
+        commit()
+        push()

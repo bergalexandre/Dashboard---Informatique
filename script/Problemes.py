@@ -37,13 +37,11 @@ class Problemes():
             Lines = tableauFile.readlines()
 
             # Strips the newline character
-            i = 0
-            for line in Lines:
-                if i < len(cell_text)and "tache1" in line:
+            for i, line in enumerate(Lines):
+                if i < len(cell_text):
                     line = line.replace("tache1", cell_text[i][2].replace("&", "\&").replace("_", " "))
                     line = line.replace("sys1", cell_text[i][1].replace("&", "\&").replace("_", " "))
                     line = line.replace("res1", cell_text[i][0].replace("&", "\&").replace("_", " "))
-                    i = i + 1
                 else: # :'(
                     line = line.replace("tache1", " ")
                     line = line.replace("sys1", " ")
@@ -74,4 +72,4 @@ class Problemes():
         #[t.set_fontsize(8) for t in [tab1, tab2]]
 
         table.auto_set_column_width(col=list(range(len(column_headers)))) # Provide integer list of columns to adjust
-        plt.savefig('img/problemes.png', transparent=True, bbox_inches='tight', pad_inches=0, dpi=450)
+        plt.savefig('img/problemes.pdf', transparent=True, bbox_inches='tight', pad_inches=0, dpi=96)

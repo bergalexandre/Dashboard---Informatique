@@ -2,10 +2,7 @@ import random
 from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
-from script.utils import *
-
-
-
+from script.utils import PATHS, DATA
 
 
 class HeuresTravaillees():
@@ -21,8 +18,8 @@ class HeuresTravaillees():
 
     def fetchData(self):
         # fetching data
-        semaine_courante = 'Sem 12'#df_formule['Date Actuel'][1]
-        data = df_travail_effectue[['#Requis', 'NOM', 'Semaine', 'heures']]
+        semaine_courante = DATA.FORMULA['Date Actuel'][1]
+        data = DATA.CRTE[['#Requis', 'NOM', 'Semaine', 'heures']]
 
         # Heures totales et heures systemes
         for i, objectif in data.iterrows():
@@ -33,13 +30,12 @@ class HeuresTravaillees():
                     self.heures_travaillees[objectif['NOM']][requis[0:4]
                                                              ] = self.heures_travaillees[objectif['NOM']][requis[0:4]] + objectif['heures']
                 self.heures_travaillees[objectif['NOM']]['heures totales'] = self.heures_travaillees[objectif['NOM']
-                                                                                                     ]['heures totales'] + df_travail_effectue['heures'][i]
+                                                                                                     ]['heures totales'] + DATA.CRTE['heures'][i]
 
         # Calcul de la moyenne des heures
         x = int(semaine_courante.split()[1])
         for membre in self.heures_travaillees:
-            self.heures_travaillees[membre]['moyenne hebdo'] = self.heures_travaillees[membre]['heures totales'] / (
-                x - self.offset)
+            self.heures_travaillees[membre]['moyenne hebdo'] = self.heures_travaillees[membre]['heures totales'] / (x - self.offset)
 
     def graphSave(self):
         fig, axes = plt.subplots()
@@ -51,8 +47,8 @@ class HeuresTravaillees():
             labels.append(self.specialty['membres'][name]['initials'])
         current_sum, somme = 0, 0
         legend = []
-        tmp = [0,0,0,0,0,0,0,0,0]
-        for i, systeme in enumerate(Systeme.ALL):
+        tmp = [0,0,0,0,0,0,0,0,0]   
+        for i, systeme in enumerate(self.specialty['systemes']):
             heures_systeme = []
             for nom in self.heures_travaillees:
                 if np.isnan(self.heures_travaillees[nom][systeme['number']]):
@@ -66,6 +62,7 @@ class HeuresTravaillees():
                 current_sum = somme
                 tmp = np.add(tmp, heures_systeme)
         axes.legend(legend)
+
         moyennes_hebdo = []
         for nom in self.heures_travaillees:
             moyennes_hebdo.append(
@@ -79,10 +76,5 @@ class HeuresTravaillees():
             axes.plot(indexMembre, moyennes_hebdo[indexMembre],
                       "ko" if moyennes_hebdo[indexMembre] >= 9 else "kx")
         plt.xlim([-1, len(self.heures_travaillees)])
-        plt.xticks(rotation=45)
-        plt.savefig("img/heures_travaillees.png", bbox_inches='tight')
-
-
-
-
-
+        plt.setp(axes.xaxis.get_majorticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+        plt.savefig(PATHS["HOURS"], bbox_inches='tight', dpi=96)
