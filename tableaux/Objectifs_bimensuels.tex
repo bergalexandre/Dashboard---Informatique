@@ -1,14 +1,16 @@
 \textbf{\large Contrôle Moteur / BMS}\\
 \begin{tabularx}{\linewidth}{
-    |>{\hsize=1.75\hsize}X|% 10% of 4\hsize 
+    |>{\hsize=0.12\hsize}X|
+    >{\hsize=1.63\hsize}X|% 10% of 4\hsize 
     >{\hsize=0.25\hsize}X|% 30% of 4\hsize
        % sum=0.2\hsize for 4 columns
   }
     \hline
-    \textbf{Objectif} & \textbf{Responsable} \\\hline
-       Générer un SPWM simple complémentaire & Gabriel Q.\\\hline 
-       Communiquer avec capteurs de température par SMBUS & Louis T.\\\hline
-       Faire un banc de test simple avec un moteur ou une charge & Gabriel Q.\\\hline 
+    \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
+      100\% & \st{Générer un SPWM simple complémentaire} & Gabriel Q.\\\hline
+      0\% & Faire varier le duty cycle du SPWM en temps réel & Gabriel Q.\\\hline
+      100\% & \st{Communiquer avec capteurs de température par SMBUS} & Louis T.\\\hline
+      0\% & Faire un banc de test simple avec un moteur ou une charge & Gabriel Q.\\\hline 
 \end{tabularx}
 \newline
 
@@ -16,33 +18,44 @@
 \textbf{\large Simulateur}
 \\
 \begin{tabularx}{\linewidth}{
-    |>{\hsize=1.75\hsize}X|% 10% of 4\hsize 
+    |>{\hsize=0.12\hsize}X|
+    >{\hsize=1.63\hsize}X|% 10% of 4\hsize 
     >{\hsize=0.25\hsize}X|% 30% of 4\hsize
        % sum=0.2\hsize for 4 columns
   }
     \hline
-    \textbf{Objectif} & \textbf{Responsable} \\\hline
-        \st{Statuer sur l’implémentation de l’inverter} & Marian L.-R.\\\hline  
-        Implémentation formule dynamique latérale et transformation des mouvements & Claude G.-P.\\\hline
-        \st{Implémentation des formules de la transmition} & Mathieu P.\\\hline
-        Simuler plusieurs cellules dans la batterie & Mathieu P.\\\hline
-        Implémentation parcours pour le véhicule & Charles-Étienne G.\\\hline 
-        Implémenter le contrôle de la simulation via l’interface graphique & William R.\\\hline 
-        \st{Implémenter les tests sur les équations déjà en place} & Malik C.\\\hline 
+    \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
+        100\% & \st{Implémentation formule dynamique latérale et transformation des mouvements} & Claude G.-P.\\\hline
+        \% & Simuler déplacement du véhicule avec consigne pilote & Claude G.-P.\\\hline
+        100\% & \st{Implémentation des formules de la transmition} & Mathieu P.\\\hline
+        \% & Simuler plusieurs cellules dans la batterie & Mathieu P.\\\hline
+        \% & Implémentation parcours pour le véhicule & Charles-Étienne G.\\\hline 
+        100\% & \st{Implémenter le contrôle de la simulation via l’interface graphique} & William R.\\\hline 
+        100 \% & \st{Implémenter les tests sur les équations déjà en place} & Malik C.\\\hline 
+        0 \% & Préparer un design review & Claude G.-P.\\\hline
+        0 \% & Modification des paramètres clés par l'interface graphique & Malik C.\\\hline
+        0 \% & Intégration des premières formules de l'inverter & Marian Lambert-Rivest \\\hline
+        0 \% & Peaufiner la force latéral de virage dans la simulation & Claude G.-P. \\\hline
+        0 \% &  & \\\hline
+        0 \% &  & \\\hline
+
 \end{tabularx}\\
 
 \hfill \break
 \textbf{\large Télémétrie/Instrumentation}\\
 \begin{tabularx}{\linewidth}{
-    |>{\hsize=1.75\hsize}X|% 10% of 4\hsize 
+    |>{\hsize=0.12\hsize}X|
+    >{\hsize=1.63\hsize}X|% 10% of 4\hsize 
     >{\hsize=0.25\hsize}X|% 30% of 4\hsize
        % sum=0.2\hsize for 4 columns
   }
     \hline
-    \textbf{Objectif} & \textbf{Responsable} \\\hline
-     Accomplir une démo bluetooth  & Alexandre B. \\\hline 
-     Investiguer sur les besoins matériels et logiciel pour les lumières et essuie glace  & Alexandre B. \\\hline
-     Inverstiguer sur les besoins matériels et logiciel pour lecture de la pédale de freins  & Charles-Étienne G.\\\hline 
+    \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
+      100\% & \st{Accomplir une démo bluetooth}  & Alexandre B. \\\hline 
+     50\% & \st{Investiguer sur les besoins matériels et logiciel pour les lumières et essuie glace}  & Alexandre B. \\\hline
+     50\% & \st{Inverstiguer sur les besoins matériels et logiciel pour lecture de la pédale de freins}  & Charles-Étienne G.\\\hline
+     0\% & Simuler sur breadboard un tableau de bord à l'aide du stm32, leds et boutons &  Alexandre B. \\
+     & Extrant: Preuve de concepte avant de concevoir le circuit électronique de la cabine &  \\\hline
 \end{tabularx}
 
 % TEMPLATE des lignes du tableau de taches accomplis cette semaine
