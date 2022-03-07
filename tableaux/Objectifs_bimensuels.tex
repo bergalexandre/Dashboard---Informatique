@@ -8,9 +8,9 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
-      100\% & 100\% & \st{Faire varier le duty cycle du SPWM en temps réel} & Gabriel Q.\\\hline
-      10\% & 5\% & Implémenter les calculs de la commande vectorielle & Gabriel Q.\\\hline
-      50\% & 10\% & Faire l'étude de la consommation énergétique des STM32 & Louis Tardif.\\\hline 
+      100\% & 100\% & \st{Implémenter les calculs de la commande vectorielle} & Gabriel Q.\\\hline
+      10\% & 10\% & Faire varier la vitesse d'un moteur avec une demande de torque & Gabriel Q.\\\hline
+      75\% & 10\% & Faire l'étude de la consommation énergétique des STM32 & Louis Tardif.\\\hline 
       0\% & 0\% & Préparation audit d'équipe & Tout le monde\\\hline 
 \end{tabularx}
 \newline
@@ -27,17 +27,17 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
-        100\% & 100\% & \st{Simuler plusieurs cellules dans la batterie} & Mathieu P.\\\hline
-        100\% & 100\% & Implémentation parcours pour le véhicule & William R.\\\hline  
-        100\% & 90 \% & Implémentation de la première stratégie de conduite & Charles-Etienne G.\\\hline
-        100\% & 100 \% & \st{Modification des paramètres clés par l'interface graphique} & Malik C.\\\hline
-        100\% & 100 \% & \st{Intégration des premières formules de l'inverter} & Marian L-R \\\hline
-        100\% & 100\% & \st{Ajouter des classes pour les paramètres clés} & Claude G.-P. \\\hline
-        20\% & 0\% & Débuter l'implémentation de la map moteur & Claude G.-P. \\\hline
-        100\% & 100\% & \st{Calculer le bilan énergétique par système} & Mathieu P.\\\hline 
-        50\% & 75\% & Afficher le bilan énergitique par système dans l'interface & Marian L-R.\\\hline %a verifier
-        25\% & 40\% & Comparaison entre deux simulation & Malik C.\\\hline  %a verifier
-        0\% & 0\% & Préparation audit d'équipe & Tout le monde\\\hline 
+        75\% & 75 \% & {Page d'accueil du simulateur} & Marian L-R.\\\hline
+        25\% & 0 \% & {Création et modification de tests unitaires} & Marian L-R \\\hline
+        100\% & 95\% & Afficher le bilan énergitique par système dans l'interface & Malik C.\\\hline %a verifier
+        100\% & 50\% & Comparaison entre deux simulation & Malik C.\\\hline  %a verifier
+        100\% & 50\% & Implémentation du moteur & Claude G.-P. \\\hline
+        0\% & 0\% & Ajouter des fonctionnalités de contrôle de la simulation (choix du solver) & Claude G.-P. \\\hline
+        100\% & 50\% & Implémentation du générateur de parcours dans l'interface
+        100\% & 80\% & Stratégie de conduite & Mathieu P.
+        50\% & 10\% & Implémentation algorithme génétique & Mathieu P.
+
+
 \end{tabularx}\\
 
 \hfill \break
@@ -51,11 +51,13 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
-    100\% & 100\% & Simuler sur breadboard un tableau de bord à l'aide du stm32, leds et boutons &  Alexandre B. \\
-     & & Extrant: Preuve de concepte avant de concevoir le circuit électronique de la cabine &  \\\hline
-     100\% & 30\% & Choisir si la LED LEDT10YGK2EE-CA produit un éclairage suffisant à la puissance désirée & Alexandre B.\\\hline
-     10\% & 5\% & Démo avec un écran epaper ou autre low power pour afficher la vitesse & Charles-E. G.\\\hline
-     0\% & 0\% & Préparation audit d'équipe & Tout le monde\\\hline 
+     100\% & 80\% & \st{Choisir si la LED LEDT10YGK2EE-CA produit un éclairage suffisant à la puissance désirée} & Alexandre B.\\\hline
+     100\% & 100\% & \st{Démo avec un écran epaper ou autre low power pour afficher la vitesse} & Charles-E. G.\\\hline
+     0 \% & 20\% & Construire une application cellulaire prête à envoyer des données du bluetooth et GPS vers un serveur & Alexandre B. \\\hline 
+     0 \% & 0\% & Ajout des feux d'urgences dans les fonctions du STM32 & Alexandre B. \\\hline 
+     0 \% & 0\% & Comminiquer avec BRP pour savoir quand un essuie-glace pourrait être reçu & Alexandre B. \\\hline 
+     0 \% & 0\% & Afficher une consigne d'accélération selon la vitesse moyenne du véhicule sur le Epaper & Charles-E. G.\\\hline
+     
 \end{tabularx}
 
 % TEMPLATE des lignes du tableau de taches accomplis cette semaine
