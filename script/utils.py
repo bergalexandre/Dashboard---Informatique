@@ -19,7 +19,8 @@ PATHS = {
     "ISSUES" : "tableauDeProblemes.tex",
     "OBJECTIVES" : "img/progression_objectifs.png",
     "STYLE" : "./script/dashboard.mplstyle",
-    "TASKS" : "tableauDeTaches.tex"
+    "TASKS" : "tableauDeTaches.tex",
+    "BILAN" : "img/bilan_heures.pdf"
 }
 
 SHEETS = {
@@ -119,7 +120,7 @@ class Systeme():
 class Speciality():
     """[Classe pour les différentes équipes du projet contenant les systèmes de chaque équipes ainsi que les membres]
     """
-    INFO = {'systemes': [Systeme.SIMULATEUR, Systeme.INSTRUMENTATION, Systeme.CONTROLE, Systeme.ERGONOMIE, Systeme.GESTION],
+    INFO = {'systemes': [Systeme.SIMULATEUR, Systeme.INSTRUMENTATION, Systeme.CONTROLE, Systeme.ERGONOMIE, Systeme.GESTION, Systeme.BATTERIE],
             'membres': {'Louis Tardif':{'initials': 'L. T.'}, 'Alexandre Bergeron':{'initials': 'A. B.'}, 'Claude Garrison-Pelletier':{'initials': 'C. G.-P.'}, 'Malik Claveau':{'initials': 'M. C.'}, 'Marian Lambert-Rivest':{'initials': 'M. L.-R.'}, 'Gabriel Quirion':{'initials': 'G. Q.'}, 'Mathieu Parent':{'initials': 'M. P.'}, 'William Rousseau':{'initials': 'W. R.'}, 'Charles-Etienne Granger':{'initials': 'C.-E. G.'}}}
     MECA = {'systemes': [Systeme.SIMULATEUR, Systeme.COQUE, Systeme.CHASSIS, Systeme.DIRECTION, Systeme.FREIN, Systeme.THERMIQUE, Systeme.SUSPENSION, Systeme.ERGONOMIE, Systeme.GESTION],
             'membres': {'Joé Morin':{'initials': 'J. M.'}, 'Gabriel Ouellet':{'initials': 'G. O.'}, 'Donald Brouillard':{'initials': 'D. B.'}, 'Alexandre Dumont':{'initials': 'A. D.'}, "Jean-Simon D'Amours-Cyr":{'initials': 'J.-S. D.-C.'}, 'Jérémi Hamelin':{'initials': 'J. H.'}, 'Anthony Martin':{'initials': 'A. M.'}, 'Charles Ouzilleau':{'initials': 'C. O.'}, 'Marco Roger':{'initials': 'M. R.'}}}

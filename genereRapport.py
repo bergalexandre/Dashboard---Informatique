@@ -64,7 +64,7 @@ def push():
 
 if __name__ == "__main__":
     speciality = Speciality.INFO
-    git        = False
+    git        = True
     plt.style.use(PATHS["STYLE"])
 
     heures_travaillees = HeuresTravaillees(speciality)

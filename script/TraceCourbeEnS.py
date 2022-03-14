@@ -27,7 +27,7 @@ def findWeek(dates = None, start = DATES["SEMESTER_START"], periods = 16):
         if date > DATES["TODAY"]:
             break
         week += 1
-    return week
+    return week-1
 
 
 class CourbeEnS():

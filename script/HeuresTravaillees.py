@@ -2,7 +2,7 @@ import random
 from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
-from script.utils import PATHS, DATA
+from script.utils import PATHS, DATA, Speciality
 
 
 class HeuresTravaillees():
@@ -18,7 +18,7 @@ class HeuresTravaillees():
 
     def fetchData(self):
         # fetching data
-        semaine_courante = DATA.FORMULA['Date Actuel'][1]
+        semaine_courante = 'Sem 9'#DATA.FORMULA['Date Actuel'][1]
         data = DATA.CRTE[['#Requis', 'NOM', 'Semaine', 'heures']]
 
         # Heures totales et heures systemes
@@ -74,7 +74,41 @@ class HeuresTravaillees():
 
         for indexMembre, nom in enumerate(self.heures_travaillees):
             axes.plot(indexMembre, moyennes_hebdo[indexMembre],
-                      "ko" if moyennes_hebdo[indexMembre] >= 9 else "kx")
+                      "ko" if moyennes_hebdo[indexMembre] >= 16 else "kx")
         plt.xlim([-1, len(self.heures_travaillees)])
         plt.setp(axes.xaxis.get_majorticklabels(), rotation=45, ha="right", rotation_mode="anchor")
         plt.savefig(PATHS["HOURS"], bbox_inches='tight', dpi=96)
+
+    def bilan_heures(self):
+        data = DATA.CRTE[['#Requis', 'NOM', 'Semaine', 'heures']]
+        
+        fig, axes = plt.subplots()
+        # Heures totales et heures systemes
+        for i, objectif in data.iterrows():
+            #print(objectif['NOM'])
+            if objectif['NOM'] in self.heures_travaillees.keys():
+                self.heures_travaillees[objectif['NOM']]['heures totales'] = self.heures_travaillees[objectif['NOM']]['heures totales'] + DATA.CRTE['heures'][i]
+
+        # Calcul de la moyenne des heures
+        moy = 0
+        for membre in self.heures_travaillees:
+            moy = moy + self.heures_travaillees[membre]['heures totales']
+        moy = moy / 9
+        
+        labels = []
+        heures = []
+        for name in self.heures_travaillees.keys():
+            labels.append(self.specialty['membres'][name]['initials'])
+            heures.append(self.heures_travaillees[name]['heures totales'])
+        plt.hist(heures)
+        axes.bar(labels, heures, color = 'tab:orange')
+        axes.plot(np.array(range(-1, len(self.heures_travaillees)+1)),
+                np.array([moy]*(len(self.heures_travaillees)+2)), "g--")
+        axes.legend(['Moyenne'])
+        axes.set_ylabel('Heures travaillées (H)')
+        plt.xlim([-1, len(self.heures_travaillees)])
+        plt.setp(axes.xaxis.get_majorticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+        plt.savefig(PATHS["BILAN"], bbox_inches='tight', dpi=96)
+
+# x = HeuresTravaillees(Speciality.INFO)
+# x.bilan_heures()
