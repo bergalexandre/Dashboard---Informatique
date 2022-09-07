@@ -8,11 +8,9 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
-      100\% & 100\% & \st{Implémenter la lecture de courant à partir des capteurs de l'onduleur} & Gabriel Q.\\\hline
-      25\% & 25\% & Programmation pour lecture et paramétrage de l'encodeur RLS & Gabriel Q.\\\hline
-      50\% & 50\% & Tests avec la première version de l'onduleur de l'équipe & Gabriel Q.\\\hline
-      50\% & 50\% & Implémenter la lecture de la température à partir des capteurs de l'onduleur & Louis Tardif.\\\hline 
-      100\% & 100\% & \st{Implémenter les types de données pour les transformées, transformées inverses}  & Louis Tardif.\\\hline
+10\% & 10\% & Implémenter un filtre passe-bas logiciel pour les lectures de courant & Gabriel Q.\\\hline
+      10\% & 10\% & Intégrer la lecture de tension des capteurs de courant  & Louis Tardif.\\\hline
+      50\% & 50\% & Intégrer la lecture de la température à partir des capteurs de l'onduleur & Louis Tardif.\\\hline 
 \end{tabularx}
 \newline
 
@@ -28,22 +26,17 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
-        100\% & 100\% & \st{Création et modification de tests unitaires} & Marian L-R \\\hline %04/04/2022
-        100\% & 100\% & \st{Modification du tableau dans Input data} & Marian L-R \\\hline %04/04/2022
-        100\% & 95\% & Afficher le bilan énergitique par système dans l'interface & Malik C.\\\hline
-        100\% & 80\% & Comparaison entre deux simulation & Malik C.\\\hline
-        100\% & 100\% & \st{calculer la consommation du moteur} & Claude G.-P. \\\hline %04/04/2022
-        100\% & 100\% & \st{Ajouter des fonctionnalités de contrôle de la simulation (choix du solver)} & Claude G.-P. \\\hline %04/04/2022
-        100\% & 100\% & \st{Implémentation du générateur de parcours dans l'interface} & William R.\\\hline
-        80\% & 25\% & Implémenter le CSS dans le UI & William R.\\\hline
-        100\% & 100\% & st{Version 1 du simulateur} & Mathieu P.\\\hline
-        100\% & 10\% & Implémentation algorithme génétique & Mathieu P.\\\hline
-
+        50\% & 25\% & Recherche priliminaire pour data dymo & Malik C.\\\hline
+        0 \% & 0\% & Intégration du parcours sur le dyno de Pascal Messier. & Malik C.\\\hline % nouveau stuff
+        100\% & 100\% & Planifier les tâches du simulateur & Claude G-P.\\\hline % Claude 2022-09-07
+        100\% & 100\% & Fix bug pour lancer la simulation via le UI& Claude G.-P.\\\hline % Claude 2022-09-07
+        50\% & 75\% & Rendre la modification des paramêtres plus intuitif & Mathieu P.\\\hline % Claude 2022-09-07
+        0\% & 0\% & Ajouter des arrêts au pilote (stratégie de conduite) & Claude G.-P.\\\hline % Claude 2022-09-07
 
 \end{tabularx}\\
 
 \hfill \break
-\textbf{\large Télémétrie/Instrumentation}\\
+\textbf{\large Instrumentation}\\
 \begin{tabularx}{\linewidth}{
     |>{\hsize=0.5\hsize}X|
     >{\hsize=0.5\hsize}X|
@@ -53,10 +46,11 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Objectif} & \textbf{Responsable} \\\hline
-     100 \% & 55\% & Construire une application cellulaire prête à envoyer des données du bluetooth et GPS vers un serveur & Alexandre B. \\\hline 
-     100 \% & 90\% & Ajout des feux d'urgences dans les fonctions du STM32 & Alexandre B. \\\hline 
-     25 \% & 5\% & Terminer l'implémentation bluetooth du STM32 en sortant l'information du CAN & Alexandre B. \\\hline 
-     100 \% & 15\% & Afficher une consigne d'accélération selon la vitesse moyenne du véhicule sur le Epaper & Charles-E. G.\\\hline
+     0 \% & 0\% & Montage prototype avec PCB d'instrumentation & Alexandre B. \\\hline 
+     0 \% & 0\% & Plan du cablage d'instrumentation & Alexandre B. \\\hline 
+     0 \% & 0\% & Validation de la librairie d'affichage sur le E-Paper & Charles-E. G. \\\hline 
+     20 \% & 50\% & Communication entre l'application mobile et le simulateur (MQTT) & Marian L.R. \\\hline 
+     30 \% & 50\% & Mise à jour du code de l'essuie glace pour utiliser un servo moteur. & Alexandre Bergeron \\\hline 
      
 \end{tabularx}
 
