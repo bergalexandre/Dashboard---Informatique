@@ -1,4 +1,5 @@
 import random
+from this import d
 from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
@@ -18,7 +19,7 @@ class HeuresTravaillees():
 
     def fetchData(self):
         # fetching data
-        semaine_courante = 'Sem 9'#DATA.FORMULA['Date Actuel'][1]
+        semaine_courante = DATA.FORMULA['Date Actuel'][1]
         data = DATA.CRTE[['#Requis', 'NOM', 'Semaine', 'heures']]
 
         # Heures totales et heures systemes
@@ -74,7 +75,7 @@ class HeuresTravaillees():
 
         for indexMembre, nom in enumerate(self.heures_travaillees):
             axes.plot(indexMembre, moyennes_hebdo[indexMembre],
-                      "ko" if moyennes_hebdo[indexMembre] >= 16 else "kx")
+                      "ko" if moyennes_hebdo[indexMembre] >= 9 else "kx")
         plt.xlim([-1, len(self.heures_travaillees)])
         plt.setp(axes.xaxis.get_majorticklabels(), rotation=45, ha="right", rotation_mode="anchor")
         plt.savefig(PATHS["HOURS"], bbox_inches='tight', dpi=96)
@@ -93,22 +94,51 @@ class HeuresTravaillees():
         moy = 0
         for membre in self.heures_travaillees:
             moy = moy + self.heures_travaillees[membre]['heures totales']
-        moy = moy / 9
+        moy = np.round(moy / 9)
         
         labels = []
         heures = []
         for name in self.heures_travaillees.keys():
             labels.append(self.specialty['membres'][name]['initials'])
             heures.append(self.heures_travaillees[name]['heures totales'])
-        plt.hist(heures)
+        
         axes.bar(labels, heures, color = 'tab:orange')
         axes.plot(np.array(range(-1, len(self.heures_travaillees)+1)),
-                np.array([moy]*(len(self.heures_travaillees)+2)), "g--")
-        axes.legend(['Moyenne'])
-        axes.set_ylabel('Heures travaillées (H)')
-        plt.xlim([-1, len(self.heures_travaillees)])
+                 np.array([moy]*(len(self.heures_travaillees)+2)), "g--")
+        for bars in axes.containers:
+            axes.bar_label(bars)
+        axes.legend(['Moyenne : ' + str(moy)], fontsize=24)
+        axes.set_ylabel("Heures travaillées (h)", fontsize=24)
+        axes.set_xlabel("Membres de l'équipe informatique", fontsize=24)
+        axes.set_title("Bilan des heures jusqu'à la semaine 13", fontsize=40)
+        axes.tick_params(axis='both', which='major', labelsize=18)
+        #plt.xlim([-1, len(self.heures_travaillees)])
         plt.setp(axes.xaxis.get_majorticklabels(), rotation=45, ha="right", rotation_mode="anchor")
-        plt.savefig(PATHS["BILAN"], bbox_inches='tight', dpi=96)
+        plt.show()
+        print('cock')        
+        #plt.savefig(PATHS["BILAN"], bbox_inches='tight', dpi=96)
 
-# x = HeuresTravaillees(Speciality.INFO)
-# x.bilan_heures()
+    def bilan_heures_raw(self):
+        data = DATA.CRTE[['#Requis', 'NOM', 'Semaine', 'heures']]
+        
+        fig, axes = plt.subplots()
+        systems_hours = {'SIM1': 0, 'INS1': 0, 'MOT2': 0, 'GES1': 0, 'ERG1': 0, 'COQ1': 0, 'CHA1': 0, 'DIR1': 0, 'FRE1': 0, 'TTH1': 0, 'SUS1': 0, 'MOT1': 0, 'BAT1': 0}
+        # Heures totales
+        for i, objectif in data.iterrows():
+            requis = objectif['#Requis']
+            if objectif['NOM'] in self.heures_travaillees.keys():
+                self.heures_travaillees[objectif['NOM']]['heures totales'] = self.heures_travaillees[objectif['NOM']]['heures totales'] + DATA.CRTE['heures'][i]
+                requis = requis[0:4]
+                if requis in systems_hours:
+                    systems_hours[requis] = systems_hours[requis] + DATA.CRTE['heures'][i]
+
+        
+
+        for membre in self.heures_travaillees:
+            print(membre, ' : ', self.heures_travaillees[membre]['heures totales'])
+        print(systems_hours)
+        
+
+#x = HeuresTravaillees(Speciality.INFO)
+#x.bilan_heures_raw()
+

@@ -90,7 +90,7 @@ class CourbeEnS():
     def genereGraphique(self, realProgressHours, BudgetedHours, workedHours):
         #range de date (axe X)
         _, ax = plt.subplots()
-        dates = pd.date_range(start=DATES["SEMESTER_START"], periods=len(BudgetedHours), freq="7D")
+        dates = pd.date_range(start=DATES["SEMESTER_START"], periods=len(BudgetedHours)+1, freq="7D")
         week = findWeek(dates=dates)
         ax.plot(BudgetedHours, "b")
 
@@ -105,7 +105,7 @@ class CourbeEnS():
         #ax.plot(range(index, len(BudgetedHours)), list((heureTotal-deltaAvancement) for heureTotal in BudgetedHours[index:]), "r--")
         
         ax.set_xticks(range(len(BudgetedHours)))
-        ax.set_xticklabels(dates.strftime("%Y-%m-%d"))
+        ax.set_xticklabels(dates.strftime("%Y-%m-%d")[1:])
         plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha="right", rotation_mode="anchor")
         ax.legend(("CBTP : Heures totales", "CRTE : Heures travaillées", "CBTE : Heures acquises"))
         #plt.show()

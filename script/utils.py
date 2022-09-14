@@ -8,7 +8,7 @@ from collections import namedtuple
 
 DATES = {
     "TODAY" : date.today(),
-    "SEMESTER_START" : "01/10/2022"
+    "SEMESTER_START" : "08/25/2022"
 }
 
 PATHS = {
@@ -126,3 +126,7 @@ class Speciality():
             'membres': {'Joé Morin':{'initials': 'J. M.'}, 'Gabriel Ouellet':{'initials': 'G. O.'}, 'Donald Brouillard':{'initials': 'D. B.'}, 'Alexandre Dumont':{'initials': 'A. D.'}, "Jean-Simon D'Amours-Cyr":{'initials': 'J.-S. D.-C.'}, 'Jérémi Hamelin':{'initials': 'J. H.'}, 'Anthony Martin':{'initials': 'A. M.'}, 'Charles Ouzilleau':{'initials': 'C. O.'}, 'Marco Roger':{'initials': 'M. R.'}}}
     ELEC = {'systemes': [Systeme.SIMULATEUR, Systeme.INSTRUMENTATION, Systeme.CONTROLE, Systeme.MOTEUR, Systeme.BATTERIE, Systeme.GESTION, Systeme.THERMIQUE],
             'membres': {'Vincent Bonneau':{'initials': 'V. B.'}, 'Marc-Antoine Dubreuil':{'initials': 'M.-A. D.'}, 'Jérôme Gelé':{'initials': 'J. G.'}, 'François Paquette':{'initials': 'F. P.'}, 'Loïc Poirier':{'initials': 'L. P.'}, 'Joël Grégoire-Lagueux':{'initials': 'J.G.-L.'}, 'Gabriel Cabana':{'initials': 'G. C.'}, 'Thomas Chagnon':{'initials': 'T. C.'}, 'Xavier Morin':{'initials': 'X. M.'}}}
+    ALL =  {'systemes': Systeme.ALL, 
+            'membres' :{'Louis Tardif':{'initials': 'L. T.'}, 'Alexandre Bergeron':{'initials': 'A. B.'}, 'Claude Garrison-Pelletier':{'initials': 'C. G.-P.'}, 'Malik Claveau':{'initials': 'M. C.'}, 'Marian Lambert-Rivest':{'initials': 'M. L.-R.'}, 'Gabriel Quirion':{'initials': 'G. Q.'}, 'Mathieu Parent':{'initials': 'M. P.'}, 'William Rousseau':{'initials': 'W. R.'}, 'Charles-Etienne Granger':{'initials': 'C.-E. G.'},
+                        'Joé Morin':{'initials': 'J. M.'}, 'Gabriel Ouellet':{'initials': 'G. O.'}, 'Donald Brouillard':{'initials': 'D. B.'}, 'Alexandre Dumont':{'initials': 'A. D.'}, "Jean-Simon D'Amours-Cyr":{'initials': 'J.-S. D.-C.'}, 'Jérémi Hamelin':{'initials': 'J. H.'}, 'Anthony Martin':{'initials': 'A. M.'}, 'Charles Ouzilleau':{'initials': 'C. O.'}, 'Marco Roger':{'initials': 'M. R.'},
+                        'Vincent Bonneau':{'initials': 'V. B.'}, 'Marc-Antoine Dubreuil':{'initials': 'M.-A. D.'}, 'Jérôme Gelé':{'initials': 'J. G.'}, 'François Paquette':{'initials': 'F. P.'}, 'Loïc Poirier':{'initials': 'L. P.'}, 'Joël Grégoire-Lagueux':{'initials': 'J.G.-L.'}, 'Gabriel Cabana':{'initials': 'G. C.'}, 'Thomas Chagnon':{'initials': 'T. C.'}, 'Xavier Morin':{'initials': 'X. M.'}}}
