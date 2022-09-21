@@ -1,10 +1,9 @@
+import random
+from this import d
 from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
-from script.utils import *
-
-
-
+from script.utils import PATHS, DATA, Speciality
 
 
 class HeuresTravaillees():
@@ -20,46 +19,49 @@ class HeuresTravaillees():
 
     def fetchData(self):
         # fetching data
-        semaine_courante = df_formule['Date Actuel'][1]
-        data = df_travail_effectue[['#Requis', 'NOM', 'Semaine', 'heures']]
+        semaine_courante = DATA.FORMULA['Date Actuel'][1]
+        data = DATA.CRTE[['#Requis', 'NOM', 'Semaine', 'heures']]
 
         # Heures totales et heures systemes
         for i, objectif in data.iterrows():
+            print(objectif['NOM'])
             if objectif['NOM'] in self.heures_travaillees.keys():
                 requis = objectif['#Requis']
                 if semaine_courante == objectif['Semaine']:
                     self.heures_travaillees[objectif['NOM']][requis[0:4]
                                                              ] = self.heures_travaillees[objectif['NOM']][requis[0:4]] + objectif['heures']
                 self.heures_travaillees[objectif['NOM']]['heures totales'] = self.heures_travaillees[objectif['NOM']
-                                                                                                     ]['heures totales'] + df_travail_effectue['heures'][i]
+                                                                                                     ]['heures totales'] + DATA.CRTE['heures'][i]
 
         # Calcul de la moyenne des heures
         x = int(semaine_courante.split()[1])
         for membre in self.heures_travaillees:
-            self.heures_travaillees[membre]['moyenne hebdo'] = self.heures_travaillees[membre]['heures totales'] / (
-                x - self.offset)
+            self.heures_travaillees[membre]['moyenne hebdo'] = self.heures_travaillees[membre]['heures totales'] / (x - self.offset)
 
     def graphSave(self):
         fig, axes = plt.subplots()
-        colors = ['tab:blue', 'tab:red', 'tab:orange','chartreuse', 'gold', 'deeppink', 'tab:cyan', 
-                  'orangered', 'chartreuse']
+        colors = ['#23ccc1','#32cea9','#96c74c','#b8c02a','#dcb504','#ffa600', '#c20606', '#cd2e01', '#1f60c2', '#ff6c54' ]
+        random.shuffle(colors)
         
         labels = []
         for name in self.heures_travaillees.keys():
             labels.append(self.specialty['membres'][name]['initials'])
-        somme = 0
+        current_sum, somme = 0, 0
         legend = []
-
+        tmp = [0,0,0,0,0,0,0,0,0]   
         for i, systeme in enumerate(self.specialty['systemes']):
             heures_systeme = []
-            legend.append(systeme['name'])
             for nom in self.heures_travaillees:
                 if np.isnan(self.heures_travaillees[nom][systeme['number']]):
                     raise Exception(
                         f"{nom} n'a pas rentré ses heures pour une tâche du système {systeme['name']}")
                 heures_systeme.append(self.heures_travaillees[nom][systeme['number']])
                 somme = somme + self.heures_travaillees[nom][systeme['number']]
-            axes.bar(labels, heures_systeme, color=colors[i], )
+            if somme - current_sum > 0: 
+                legend.append(systeme['name'])
+                axes.bar(labels, heures_systeme, color=colors.pop(), bottom=tmp)
+                current_sum = somme
+                tmp = np.add(tmp, heures_systeme)
         axes.legend(legend)
 
         moyennes_hebdo = []
@@ -75,9 +77,68 @@ class HeuresTravaillees():
             axes.plot(indexMembre, moyennes_hebdo[indexMembre],
                       "ko" if moyennes_hebdo[indexMembre] >= 9 else "kx")
         plt.xlim([-1, len(self.heures_travaillees)])
-        plt.xticks(rotation=45)
-        plt.savefig("img/heures_travaillees.png", bbox_inches='tight')
+        plt.setp(axes.xaxis.get_majorticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+        plt.savefig(PATHS["HOURS"], bbox_inches='tight', dpi=96)
 
+    def bilan_heures(self):
+        data = DATA.CRTE[['#Requis', 'NOM', 'Semaine', 'heures']]
+        
+        fig, axes = plt.subplots()
+        # Heures totales et heures systemes
+        for i, objectif in data.iterrows():
+            #print(objectif['NOM'])
+            if objectif['NOM'] in self.heures_travaillees.keys():
+                self.heures_travaillees[objectif['NOM']]['heures totales'] = self.heures_travaillees[objectif['NOM']]['heures totales'] + DATA.CRTE['heures'][i]
 
+        # Calcul de la moyenne des heures
+        moy = 0
+        for membre in self.heures_travaillees:
+            moy = moy + self.heures_travaillees[membre]['heures totales']
+        moy = np.round(moy / 9)
+        
+        labels = []
+        heures = []
+        for name in self.heures_travaillees.keys():
+            labels.append(self.specialty['membres'][name]['initials'])
+            heures.append(self.heures_travaillees[name]['heures totales'])
+        
+        axes.bar(labels, heures, color = 'tab:orange')
+        axes.plot(np.array(range(-1, len(self.heures_travaillees)+1)),
+                 np.array([moy]*(len(self.heures_travaillees)+2)), "g--")
+        for bars in axes.containers:
+            axes.bar_label(bars)
+        axes.legend(['Moyenne : ' + str(moy)], fontsize=24)
+        axes.set_ylabel("Heures travaillées (h)", fontsize=24)
+        axes.set_xlabel("Membres de l'équipe informatique", fontsize=24)
+        axes.set_title("Bilan des heures jusqu'à la semaine 13", fontsize=40)
+        axes.tick_params(axis='both', which='major', labelsize=18)
+        #plt.xlim([-1, len(self.heures_travaillees)])
+        plt.setp(axes.xaxis.get_majorticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+        plt.show()
+        print('cock')        
+        #plt.savefig(PATHS["BILAN"], bbox_inches='tight', dpi=96)
 
+    def bilan_heures_raw(self):
+        data = DATA.CRTE[['#Requis', 'NOM', 'Semaine', 'heures']]
+        
+        fig, axes = plt.subplots()
+        systems_hours = {'SIM1': 0, 'INS1': 0, 'MOT2': 0, 'GES1': 0, 'ERG1': 0, 'COQ1': 0, 'CHA1': 0, 'DIR1': 0, 'FRE1': 0, 'TTH1': 0, 'SUS1': 0, 'MOT1': 0, 'BAT1': 0}
+        # Heures totales
+        for i, objectif in data.iterrows():
+            requis = objectif['#Requis']
+            if objectif['NOM'] in self.heures_travaillees.keys():
+                self.heures_travaillees[objectif['NOM']]['heures totales'] = self.heures_travaillees[objectif['NOM']]['heures totales'] + DATA.CRTE['heures'][i]
+                requis = requis[0:4]
+                if requis in systems_hours:
+                    systems_hours[requis] = systems_hours[requis] + DATA.CRTE['heures'][i]
+
+        
+
+        for membre in self.heures_travaillees:
+            print(membre, ' : ', self.heures_travaillees[membre]['heures totales'])
+        print(systems_hours)
+        
+
+#x = HeuresTravaillees(Speciality.INFO)
+#x.bilan_heures_raw()
 
