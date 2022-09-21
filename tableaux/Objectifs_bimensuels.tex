@@ -9,9 +9,9 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Heures} &\textbf{Objectif} & \textbf{Responsable} \\\hline
-10\% & 10\% & & Implémenter un filtre passe-bas logiciel pour les lectures de courant & Gabriel Q.\\\hline
-      10\% & 10\% &  & Intégrer la lecture de tension des capteurs de courant  & Louis Tardif.\\\hline
-      50\% & 50\% &  & Intégrer la lecture de la température à partir des capteurs de l'onduleur & Louis Tardif.\\\hline 
+    100\% & 100\% & 6 & Synchroniser les lectures de courants de phase aux PWMs du contrôle moteur & Gabriel Q.\\\hline
+    50\% & 50\% & 4 & Tester l'encodeur avec le nouveau montage bien aligné & Gabriel Q.\\\hline
+    100\% & 100\% & 10 & Intégrer la lecture de tension des capteurs de courant  & Louis Tardif.\\\hline
 \end{tabularx}
 \newline
 
@@ -28,12 +28,11 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Heures} &\textbf{Objectif} & \textbf{Responsable} \\\hline
-        50\% & 25\% &  &  Recherche priliminaire pour data dymo & Malik C.\\\hline
-        0 \% & 0\% &  &  Intégration du parcours sur le dyno de Pascal Messier. & Malik C.\\\hline % nouveau stuff
-        100\% & 100\% &  &  Planifier les tâches du simulateur & Claude G-P.\\\hline % Claude 2022-09-07
-        100\% & 100\% &  &  Fix bug pour lancer la simulation via le UI& Claude G.-P.\\\hline % Claude 2022-09-07
-        50\% & 75\% &  &  Rendre la modification des paramêtres plus intuitif & Mathieu P.\\\hline % Claude 2022-09-07
-        0\% & 0\% &  &  Ajouter des arrêts au pilote (stratégie de conduite) & Claude G.-P.\\\hline % Claude 2022-09-07
+        75\% & 75\% & 11 &  Format data pour logiciel Mtest-7 & Malik C.\\\hline
+        0 \% & 0\% & 0 &  Intégration du parcours sur le dyno de Pascal Messier. & Malik C.\\\hline % nouveau stuff
+        100\% & 100\% & 18 &  \st{Rendre la modification des paramêtres plus intuitif} & Mathieu P.\\\hline % Claude 2022-09-21
+        75\% & 60\% & 12 &  Véhicule fait des arrêts (stratégie de conduite) & Claude G.-P.\\\hline % Claude 2022-09-21
+        100\% & 75\% & 16 &  décélération/acélération dans les virages (stratégie de conduite) & Mathieu P. \\\hline % ?
 
 \end{tabularx}\\
 
@@ -49,12 +48,12 @@
   }
     \hline
     \textbf{Planifié} & \textbf{Progrès} & \textbf{Heures} &\textbf{Objectif} & \textbf{Responsable} \\\hline
-     0 \% & 0\% &  &   Montage prototype avec PCB d'instrumentation & Alexandre B. \\\hline 
-     0 \% & 0\% &  &   Plan du cablage d'instrumentation & Alexandre B. \\\hline 
-     50 \% & 30\% & 18 &   Validation de la librairie d'affichage sur le E-Paper & Charles-E. G. \\\hline 
-     20 \% & 50\% &  &   Communication entre l'application mobile et le simulateur (MQTT) & Marian L.R. \\\hline 
-     30 \% & 50\% &  &   Mise à jour du code de l'essuie glace pour utiliser un servo moteur. & Alexandre Bergeron \\\hline 
-     
+     50 \% & 100\% & 1 &   Plan du cablage d'instrumentation & Alexandre B. \\\hline 
+     80 \% & 100\% & 18 &   Librairie d'affichage sur le E-Paper testée et intégrée & Charles-E. G. \\\hline 
+     100 \% & 100\% & 8 &   \st{Communication entre l'application mobile et le simulateur (MQTT)} & Marian L.R. \\\hline 
+     100 \% & 100\% & 2 &   \st{Mise à jour du code de l'essuie glace pour utiliser un servo moteur.} & Alexandre Bergeron \\\hline 
+     30 \% & 50\% & 7 & Lecture de la pédale de torque. & Alexandre Bergeron \\\hline
+     10 \% & 33\% & 0 & Création d'une librairie CAN. & William Rousseau \\\hline
 \end{tabularx}
 
 % TEMPLATE des lignes du tableau de taches accomplis cette semaine
