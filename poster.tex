@@ -82,7 +82,7 @@ Informatique  -  {\AdvanceDate[0]\today}
 \headerbox{Objectif de projet}{name=objectif,column=0,row=0, span=3}{
 Créer un véhicule efficace à propulsion électrique pour participer et gagner la compétition Shell-éco marathon dans la division ''véhicule urbain'' en 2023
 
-\vspace{0.2cm} %vertical spacing
+\vspace{0.3cm} %vertical spacing
 }
 
 
@@ -92,7 +92,7 @@ Créer un véhicule efficace à propulsion électrique pour participer et gagner
 \centering
 {\input{tableaux/objectifs_session}}
 
-\vspace{0.50cm} % spacing vertical
+\vspace{0.5cm} % spacing vertical
 
 }
 
@@ -108,12 +108,12 @@ Créer un véhicule efficace à propulsion électrique pour participer et gagner
     \end{enumerate}
     \item \textbf{Rencontre technique :}
     \begin{enumerate}
-        \item Tour des 3 systèmes.
+        \item Recommendation pour la lecture de la pédale de torque.
         \item Discussion Contrôle Moteur.
     \end{enumerate}
 \end{itemize}
 
-\vspace{0.35cm} % spacing vertical
+%\vspace{0.1cm} % spacing vertical
 }
                                     
 \headerbox{Membres}{name=membres,column=2,below=objectif_session,span=1}{
@@ -199,7 +199,7 @@ Contrôle
 \headerbox{Meme du jour}{name=courbe_s,column=0,span=2,below=objectif_session}{
 \hspace{1cm}
 \begin{center}
-    \includegraphics[scale=0.75]{img/silent_motor.png}
+    \includegraphics[scale=0.24]{img/meme.png}
 \end{center}
 }
 
@@ -215,7 +215,7 @@ Contrôle
 \begin{center}
 \begin{itemize}
     \item Simulateur: Un peu de retard sur la stratégie de conduite, mais il y a des avancements et on a des nouvelles stratégies pour tester  % Claude 2022-09-21
-    \item Contrôle Moteur: En attente d'un montage avec un encodeur bien aligné à un moteur; Lectures courant de phase synchronisées avec les PWM complétées. Fonction pour contrôler en torque à faire pour les tests dynamomètre.
+    \item Contrôle Moteur: Correction des opérations mathématiques dans la boucle FOC. Intégration de STM32CubeMonitor pour enregistrer et "tuner" des variables. Boucle ouverte fonctionnelle; boucle fermée à compléter
     \item Instrumentation: Vérification de la librairie e-paper commencée, il manque des fonctions pour l'utiliser dans la boucle principale du MCU. % CEG 2022-09-14
     \item 
 \end{itemize}
