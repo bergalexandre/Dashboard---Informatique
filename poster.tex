@@ -108,8 +108,7 @@ Créer un véhicule efficace à propulsion électrique pour participer et gagner
     \end{enumerate}
     \item \textbf{Rencontre technique :}
     \begin{enumerate}
-        \item Recommendation pour la lecture de la pédale de torque.
-        \item Discussion Contrôle Moteur.
+        \item Review Simulateur.
     \end{enumerate}
 \end{itemize}
 
@@ -214,9 +213,9 @@ Contrôle
 \hspace{1cm}
 \begin{center}
 \begin{itemize}
-    \item Simulateur: Un peu de retard sur la stratégie de conduite, mais il y a des avancements et on a des nouvelles stratégies pour tester  % Claude 2022-09-21
-    \item Contrôle Moteur: Correction des opérations mathématiques dans la boucle FOC. Intégration de STM32CubeMonitor pour enregistrer et "tuner" des variables. Boucle ouverte fonctionnelle; boucle fermée à compléter
-    \item Instrumentation: Vérification de la librairie e-paper commencée, il manque des fonctions pour l'utiliser dans la boucle principale du MCU. % CEG 2022-09-14
+    \item Simulateur: Simulateur a de drôle de reaction au pilote. Il va falloir investir du temps pour règler cela.% Claude 2022-09-28
+    \item Contrôle Moteur: Tuning PI de commande de torque avec STM32CubeMonitor. Boucle ouverte fonctionnelle; boucle fermée à compléter. Correction nombre paire de pôles. Test avec moteur de l'équipe RISE.
+    \item Instrumentation: Un peu de retard sur lib CAN  et contrôle de l'intensité. % CEG 2022-09-14
     \item 
 \end{itemize}
 \end{center}
