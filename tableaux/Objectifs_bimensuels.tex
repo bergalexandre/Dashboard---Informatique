@@ -10,9 +10,8 @@
     \hline
     \textbf{Planifié(\%)} & \textbf{Progrès(\%)} & \textbf{Planifié(H)} &\textbf{Objectif} & \textbf{Responsable} \\\hline
     100\% & 100\% & 30 & \st{ Refactor en correction des calculs FOC} & Louis T.\\\hline
-    50\% & 50\% & 40 & Tester la prise de mesures et le "tuning" avec STM32CubeMonitor & Louis T.\\\hline
-    50\% & 50\% & 10 & Avoir un code qui permet de tester le moteur sur le dynamomètre & Gabriel Q.\\\hline
-    100\% & 100\% & 5 & Connaitre le RPM du moteur & Gabriel Q.\\\hline
+    100\% & 100\% & 40 & \st{Tester la prise de mesures et le "tuning" avec STM32CubeMonitor} & Louis T.\\\hline
+    0\% & 50\% & 10 & "Tuning" du PI sur dynamomètre & Gabriel Q.\\\hline
     50\% & 50\% & 15 & Avoir une 'dead-zone' ou une transition open->closed loop pour le contrôle  & Louis T.\\\hline
     10\% & 10\% & 5 & Contrôler la direction de rotation du moteur (Horaire, anti-horaire)  & Louis T.\\\hline
 \end{tabularx}
@@ -31,11 +30,10 @@
   }
     \hline
     \textbf{Planifié(\%)} & \textbf{Progrès(\%)} & \textbf{Planifié(H)} &\textbf{Objectif} & \textbf{Responsable} \\\hline
-        75 \% & 70\% & 12 &  Création script pour sortir torque en fonction RPM de datasheet. & Malik C.\\\hline
+        100 \% & 100\% & 12 &  \st{Création script pour sortir torque en fonction RPM de datasheet.} & Malik C.\\\hline
         0 \% & 0\% & 6 &  Intégration du parcours sur le dyno de Pascal Messier. & Malik C.\\\hline % nouveau stuff
-        100\% & 95\% & 12 &  Véhicule fait des arrêts (stratégie de conduite) & Claude G.-P.\\\hline % Claude 2022-09-28
-        100\% & 95\% & 16 &  Décélération/acélération dans les virages (stratégie de conduite) & Mathieu P. \\\hline % ?
-        25\% & 25\% & 30 &  Conception contrôleur de vitesse (machine à état/logique floue)  & Mathieu P. \\\hline % ?
+        70\% & 50\% & 16 &  Décélération/acélération dans les virages (stratégie de conduite) & Claude G.P. \\\hline % 2022-10-12
+        100\% & 50\% & 30 &  Conception et intégration contrôleur de vitesse (machine à état/logique floue)  & Mathieu P. \\\hline % ?
 
 \end{tabularx}\\
 
@@ -51,11 +49,13 @@
   }
     \hline
     \textbf{Planifié(\%)} & \textbf{Progrès(\%)} & \textbf{Planifié(H)} &\textbf{Objectif} & \textbf{Responsable} \\\hline
-     100 \% & 100\% & 1 &   \st{Plan du cablage d'instrumentation} & Alexandre B. \\\hline 
-     75 \% & 0\% & 9 &  Contrôle de l'intensité des phares avant & Charles-E. G. \\\hline 
-     100 \% & 100\% & 7 & \st{Lecture de la pédale de torque.} & Alexandre B. \\\hline
-     75 \% & 50\% & 8 & Création d'une librairie CAN. & William R. et Marian L.R. \\\hline
-     40 \% & 40\% & 24 & Test de la carte prototype & Alexandre B. et Charles-E. G. \\\hline
+     75 \% & 0\% & 9\rightarrow18 &  Contrôler les lumières du véhicule & Charles-E. G. \\\hline
+     100 \% & 75\% & 8 & Création d'une librairie CAN. & William R. et Marian L.R. \\\hline
+     100 \% & 90\% & 4 & Faire fonctionner le SmartBMS de Idneo avec l'application qu'il nous ont fournis. & William R. et Marian L.R. \\\hline
+     0 \% & 0\% & 16 & Lire les data du SmartBMS de Idneo à l'aide avec CAN. & William R. et Marian L.R. \\\hline
+     100 \% & 95\% & 24 & Test de la carte prototype & Alexandre B. et Charles-E. G. \\\hline
+     0\% & 0\% & 24 & Intégration de la carte prototype au véhicule & Alexandre B. \\\hline
+     0\% & 0\% & 30 & Envoyé les données CAN via bluetooth & Alexandre B. \\\hline
 \end{tabularx}
 
 % TEMPLATE des lignes du tableau de taches accomplis cette semaine
